@@ -95,6 +95,7 @@ class TextStyles {
   static const TextStyle overLine = TextStyle(
     fontFamily: appFontFamily,
     fontSize: 10,
+    color: Colors.white,
     height: 1.4,
     fontWeight: FontWeight.w400,
     fontFeatures: <FontFeature>[FontFeature.tabularFigures()],
