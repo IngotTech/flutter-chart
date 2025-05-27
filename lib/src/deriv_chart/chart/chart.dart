@@ -42,7 +42,7 @@ class Chart extends StatefulWidget {
   /// Creates chart that expands to available space.
   const Chart({
     required this.mainSeries,
-    required this.granularity,
+    required this.granularity,required this.minGlow, required this.maxGlow, required this.glowDuration,
     this.drawingTools,
     this.pipSize = 4,
     this.controller,
@@ -74,7 +74,7 @@ class Chart extends StatefulWidget {
     this.showDataFitButton,
     this.showScrollToLastTickButton,
     this.loadingAnimationColor,
-    Key? key,
+    Key? key, 
   }) : super(key: key);
 
   /// Chart's main data series.
@@ -184,6 +184,12 @@ class Chart extends StatefulWidget {
 
   /// Chart's indicators
   final Repository<IndicatorConfig>? indicatorsRepo;
+
+  final double minGlow;
+
+  final double maxGlow;
+
+  final Duration glowDuration;
 
   @override
   State<StatefulWidget> createState() =>

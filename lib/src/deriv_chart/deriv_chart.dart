@@ -29,7 +29,10 @@ class DerivChart extends StatefulWidget {
   const DerivChart({
     required this.mainSeries,
     required this.granularity,
-    required this.activeSymbol,
+    required this.activeSymbol,  
+    this.maxGlow = 0.0,
+    this.minGlow = 0.0,
+    this.glowDuration = const Duration(milliseconds: 500),
     this.markerSeries,
     this.controller,
     this.onCrosshairAppeared,
@@ -62,6 +65,13 @@ class DerivChart extends StatefulWidget {
     this.loadingAnimationColor,
     Key? key,
   }) : super(key: key);
+  /// Duration of the glow animation.
+  final Duration glowDuration;
+  /// max glow
+  final double maxGlow;
+
+ /// min glow
+  final double minGlow;
 
   /// Chart's main data series
   final DataSeries<Tick> mainSeries;
@@ -309,6 +319,9 @@ class _DerivChartState extends State<DerivChart> {
           builder: (BuildContext context) => Stack(
             children: <Widget>[
               Chart(
+                minGlow: widget.minGlow,
+                maxGlow: widget.maxGlow,  
+                glowDuration: widget.glowDuration,
                 mainSeries: widget.mainSeries,
                 pipSize: widget.pipSize,
                 granularity: widget.granularity,

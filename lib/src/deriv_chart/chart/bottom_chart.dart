@@ -19,6 +19,9 @@ class BottomChart extends BasicChart {
     required Series series,
     required this.granularity,
     required this.title,
+    required super.minGlow,
+    required super.maxGlow,  
+    required super.glowDuration,
     int pipSize = 4,
     Key? key,
     this.onRemove,
@@ -35,7 +38,7 @@ class BottomChart extends BasicChart {
     this.bottomChartTitleMargin,
     super.currentTickAnimationDuration,
     super.quoteBoundsAnimationDuration,
-  }) : super(key: key, mainSeries: series, pipSize: pipSize);
+  }) : super(key: key, mainSeries: series, pipSize: pipSize,);
 
   /// For candles: Duration of one candle in ms.
   /// For ticks: Average ms difference between two consecutive ticks.

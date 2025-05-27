@@ -17,10 +17,20 @@ class _LineChartScreenState extends BaseChartScreenState<LineChartScreen> {
   Color _lineColor = Colors.blue;
   bool _showTickIndicator = true;
   TickIndicator? _tickIndicator;
+  
+  late LineSeries lineSeries;
 
   @override
   void initState() {
     super.initState();
+      lineSeries = LineSeries(
+    ticks,
+    style: LineStyle(
+      hasArea: _hasArea,
+      thickness: _thickness,
+      color: _lineColor,
+    ));
+
     // Initialize tick indicator after the frame is rendered to ensure ticks are loaded
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _initializeTickIndicator();
@@ -70,22 +80,28 @@ class _LineChartScreenState extends BaseChartScreenState<LineChartScreen> {
       annotations.add(_tickIndicator!);
     }
 
+  return TweenAnimationBuilder<double>(
+  tween: Tween<double>(
+    begin:  10 ,
+    end: 0,
+  ),
+  duration: const Duration(milliseconds: 1000),
+  builder: (context, glowValue, _) {
+     lineSeries.glowIntensity = glowValue;
+    print('Glow value: $glowValue');
+    
+
     return DerivChart(
       key: const Key('line_chart'),
-      mainSeries: LineSeries(
-        ticks,
-        style: LineStyle(
-          hasArea: _hasArea,
-          thickness: _thickness,
-          color: _lineColor,
-        ),
-      ),
+      mainSeries: lineSeries,
       annotations: annotations,
       controller: controller,
       pipSize: 2,
-      granularity: 60000, // 1 minute
+      granularity: 60000,
       activeSymbol: 'LINE_CHART',
     );
+  },
+);
   }
 
   @override

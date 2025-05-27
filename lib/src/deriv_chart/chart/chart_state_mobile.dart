@@ -54,6 +54,9 @@ class _ChartStateMobile extends _ChartState {
               referenceIndexOf(widget.bottomConfigs, config);
 
           final Widget bottomChart = BottomChartMobile(
+            minGlow: widget.minGlow,
+            maxGlow: widget.maxGlow,
+            glowDuration:widget.glowDuration,
             series: series,
             isHidden: repository?.getHiddenStatus(index) ?? false,
             granularity: widget.granularity,
@@ -115,6 +118,9 @@ class _ChartStateMobile extends _ChartState {
                 if (context.read<ChartConfig>().chartAxisConfig.showFrame)
                   _buildMainChartFrame(context),
                 MainChart(
+                   minGlow: widget.minGlow,
+            maxGlow: widget.maxGlow,
+            glowDuration:widget.glowDuration,
                   drawingTools: widget.drawingTools,
                   controller: _controller,
                   mainSeries: widget.mainSeries,

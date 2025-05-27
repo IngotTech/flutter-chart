@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'package:deriv_chart/src/deriv_chart/chart/data_visualization/chart_data.dart';
+import 'package:deriv_chart/src/deriv_chart/chart/data_visualization/chart_series/line_series/line_series.dart';
 import 'package:deriv_chart/src/deriv_chart/chart/data_visualization/models/animation_info.dart';
 import 'package:deriv_chart/src/models/tick.dart';
 import 'package:deriv_chart/src/theme/painting_styles/line_style.dart';
@@ -12,9 +13,12 @@ import '../data_series.dart';
 /// A [DataPainter] for painting line data.
 class LinePainter extends DataPainter<DataSeries<Tick>> {
   /// Initializes
-  LinePainter(
-    DataSeries<Tick> series,
-  ) : super(series);
+final double glowIntensity;
+
+LinePainter(
+  DataSeries<Tick> series,
+)  : glowIntensity = (series as LineSeries).glowIntensity, 
+      super(series);
 
   @override
   void onPaintData(
@@ -29,7 +33,11 @@ class LinePainter extends DataPainter<DataSeries<Tick>> {
     final Paint linePaint = Paint()
       ..color = style.color
       ..style = PaintingStyle.stroke
-      ..strokeWidth = style.thickness;
+      ..strokeWidth = style.thickness  
+      ..maskFilter = (series as LineSeries).glowIntensity > 0
+      ? MaskFilter.blur(BlurStyle.solid, (series as LineSeries).glowIntensity )
+      : null;
+
 
     final DataLinePathInfo path = createPath(epochToX, quoteToY, animationInfo);
 

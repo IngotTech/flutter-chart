@@ -17,10 +17,13 @@ import 'x_axis/x_axis_model.dart';
 /// Mobile version of the chart to add the bottom indicators too.
 class BottomChartMobile extends BasicChart {
   /// Initializes a bottom chart mobile.
-  const BottomChartMobile({
+  const BottomChartMobile( {
     required Series series,
     required this.granularity,
     required this.title,
+    required super.minGlow,
+    required super.maxGlow,  
+    required super.glowDuration,
     this.showFrame = true,
     int pipSize = 4,
     Key? key,

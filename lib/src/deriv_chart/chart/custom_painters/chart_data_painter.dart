@@ -11,6 +11,7 @@ import '../data_visualization/chart_series/line_series/line_series.dart';
 import '../data_visualization/chart_series/ohlc_series/candle/candle_series.dart';
 import '../data_visualization/chart_series/series.dart';
 
+
 /// A `CustomPainter` which paints the chart data inside the chart.
 class ChartDataPainter extends BaseChartDataPainter {
   /// Initializes a `CustomPainter` which paints the chart data inside
@@ -26,6 +27,7 @@ class ChartDataPainter extends BaseChartDataPainter {
     required double topY,
     required double bottomY,
     required ChartScaleModel chartScaleModel,
+    this.glowIntensity = 0.0, 
     List<Series> secondarySeries = const <Series>[],
     AnimationInfo animationInfo = const AnimationInfo(),
   }) : super(
@@ -44,9 +46,13 @@ class ChartDataPainter extends BaseChartDataPainter {
 
   /// Chart's main data series.
   final Series mainSeries;
+final double glowIntensity;
 
   @override
   void paint(Canvas canvas, Size size) {
+      if (mainSeries is LineSeries) {
+    (mainSeries as LineSeries).glowIntensity = glowIntensity;
+  }
     mainSeries.paint(
       canvas,
       size,
@@ -132,6 +138,7 @@ class BaseChartDataPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    
     for (final Series series in series) {
       series.paint(
         canvas,

@@ -45,7 +45,9 @@ class _ChartStateWeb extends _ChartState {
             currentTickAnimationDuration: currentTickAnimationDuration,
             quoteBoundsAnimationDuration: quoteBoundsAnimationDuration,
             showCurrentTickBlinkAnimation:
-                widget.showCurrentTickBlinkAnimation ?? true,
+                widget.showCurrentTickBlinkAnimation ?? true, glowDuration: const Duration(milliseconds: 500),
+                minGlow: 0,
+                maxGlow: 0,
           ),
         ),
         if (bottomSeries?.isNotEmpty ?? false)
@@ -58,6 +60,9 @@ class _ChartStateWeb extends _ChartState {
               flex: isExpanded ? bottomSeries.length : 1,
               child: BottomChart(
                 series: series,
+                glowDuration: const Duration(seconds: 1),
+                minGlow: 0,
+                maxGlow: 0,
                 granularity: widget.granularity,
                 pipSize: widget.bottomConfigs[index].pipSize,
                 title: widget.bottomConfigs[index].title,

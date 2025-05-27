@@ -28,6 +28,9 @@ class BasicChart extends StatefulWidget {
   ///Initializes a basic chart.
   const BasicChart({
     required this.mainSeries,
+    required this.minGlow,
+    required this.maxGlow,
+    required this.glowDuration,
     this.pipSize = 4,
     this.opacity = 1,
     ChartAxisConfig? chartAxisConfig,
@@ -37,7 +40,12 @@ class BasicChart extends StatefulWidget {
     this.quoteBoundsAnimationDuration = _defaultDuration,
   })  : chartAxisConfig = chartAxisConfig ?? const ChartAxisConfig(),
         super(key: key);
-
+  /// The minimum glow value to use for the chart.
+  final double minGlow;
+  /// The maximum glow value to use for the chart.
+  final double maxGlow;
+  /// The duration of the glow animation.
+  final Duration glowDuration;
   /// The main series to display on the chart.
   final Series mainSeries;
 
@@ -451,22 +459,31 @@ class BasicChartState<T extends BasicChart> extends State<T>
         builder: (BuildContext context, _) => RepaintBoundary(
           child: Opacity(
             opacity: widget.opacity,
-            child: CustomPaint(
-              painter: ChartDataPainter(
-                animationInfo: AnimationInfo(
-                  currentTickPercent: currentTickAnimation.value,
+            child: TweenAnimationBuilder<double>(
+  tween: Tween<double>(
+    begin:  widget.minGlow ,
+    end: widget.maxGlow,
+  ),
+  duration: widget.glowDuration,
+  builder: (context, glowValue, _) { return CustomPaint(
+                painter: ChartDataPainter(
+                  animationInfo: AnimationInfo(
+                    currentTickPercent: currentTickAnimation.value,
+                  ),
+                  mainSeries: widget.mainSeries,
+                  chartConfig: context.watch<ChartConfig>(),
+                  theme: context.watch<ChartTheme>(),
+                  epochToCanvasX: xAxis.xFromEpoch,
+                  quoteToCanvasY: chartQuoteToCanvasY,
+                  rightBoundEpoch: xAxis.rightBoundEpoch,
+                  leftBoundEpoch: xAxis.leftBoundEpoch,
+                  topY: chartQuoteToCanvasY(widget.mainSeries.maxValue),
+                  bottomY: chartQuoteToCanvasY(widget.mainSeries.minValue),
+                  chartScaleModel: context.watch<ChartScaleModel>(),
+                          glowIntensity: glowValue,
+
                 ),
-                mainSeries: widget.mainSeries,
-                chartConfig: context.watch<ChartConfig>(),
-                theme: context.watch<ChartTheme>(),
-                epochToCanvasX: xAxis.xFromEpoch,
-                quoteToCanvasY: chartQuoteToCanvasY,
-                rightBoundEpoch: xAxis.rightBoundEpoch,
-                leftBoundEpoch: xAxis.leftBoundEpoch,
-                topY: chartQuoteToCanvasY(widget.mainSeries.maxValue),
-                bottomY: chartQuoteToCanvasY(widget.mainSeries.minValue),
-                chartScaleModel: context.watch<ChartScaleModel>(),
-              ),
+              );}
             ),
           ),
         ),

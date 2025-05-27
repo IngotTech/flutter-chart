@@ -10,11 +10,13 @@ import 'line_painter.dart';
 
 /// Line series.
 class LineSeries extends DataSeries<Tick> {
+  
   /// Initializes a line series.
   LineSeries(
     List<Tick> entries, {
     String? id,
     LineStyle? style,
+
     HorizontalBarrierStyle? lastTickIndicatorStyle,
   }) : super(
           entries,
@@ -22,6 +24,7 @@ class LineSeries extends DataSeries<Tick> {
           style: style,
           lastTickIndicatorStyle: lastTickIndicatorStyle,
         );
+    double glowIntensity = 0.0;
 
   @override
   SeriesPainter<DataSeries<Tick>> createPainter() => LinePainter(

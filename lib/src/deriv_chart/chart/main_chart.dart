@@ -40,6 +40,9 @@ class MainChart extends BasicChart {
   /// Initializes the main chart to display in the chart widget.
   MainChart({
     required DataSeries<Tick> mainSeries,
+    required super.glowDuration,
+    required super.minGlow,
+    required super.maxGlow,
     this.drawingTools,
     this.isLive = false,
     int pipSize = 4,
@@ -72,10 +75,12 @@ class MainChart extends BasicChart {
         super(
           key: key,
           mainSeries: mainSeries,
+
           pipSize: pipSize,
           opacity: opacity,
           chartAxisConfig: chartAxisConfig,
           onQuoteAreaChanged: onQuoteAreaChanged,
+       
         );
 
   /// The indicator series that are displayed on the main chart.
@@ -131,6 +136,7 @@ class MainChart extends BasicChart {
 
   /// Whether to show current tick blink animation or not.
   final bool showCurrentTickBlinkAnimation;
+  
 
   @override
   _ChartImplementationState createState() => _ChartImplementationState();
