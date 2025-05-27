@@ -28,7 +28,7 @@ class CrosshairDetails extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.all(10),
         decoration: const BoxDecoration(
-          color: Color(0xFF323738),
+          color: Colors.amber,
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
         child: Column(
@@ -48,7 +48,7 @@ class CrosshairDetails extends StatelessWidget {
     final String timeLabel = DateFormat('dd MMM yyy - HH:mm:ss').format(time);
     return Text(
       timeLabel,
-      style: context.watch<ChartTheme>().overLine,
+      style: TextStyle(color: Colors.red)//context.watch<ChartTheme>().overLine,
     );
   }
 }
