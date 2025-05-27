@@ -11,7 +11,7 @@ class CrosshairDotPainter extends CustomPainter {
       const Offset(0, 0),
       3,
       // TODO(Ramin): Use theme color when cross-hair design got updated
-      Paint()..color = Colors.white,
+      Paint()..color = Color(0xFF323738),
     );
   }
 
