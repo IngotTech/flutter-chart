@@ -84,6 +84,7 @@ abstract class ChartTheme {
 
   Color get crosshairInformationBoxBackgroundColor;
 
+
   /// The style of the current tick indicator.
   HorizontalBarrierStyle get currentSpotStyle;
 
