@@ -85,6 +85,8 @@ class ChartDefaultLightTheme extends ChartDefaultTheme {
   @override
   Color get crosshairInformationBoxBackgroundColor => const Color(0xF7F7F7F7);
 
+
+
   @override
   Color get currentSpotDotColor => LightThemeColors.currentSpotDotColor;
 
@@ -139,6 +141,8 @@ class ChartDefaultLightTheme extends ChartDefaultTheme {
 
   @override
   Color get base07Color => LegacyLightThemeColors.base07;
+  
+
   
 
 }

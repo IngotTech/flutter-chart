@@ -84,7 +84,8 @@ class ChartDefaultDarkTheme extends ChartDefaultTheme {
       DarkThemeColors.crosshairLineResponsiveUpperLineGradientStart;
 
   @override
-  Color get crosshairInformationBoxBackgroundColor => Colors.red;// const Color(0xFF323738);
+  Color get crosshairInformationBoxBackgroundColor => const Color(0xFF323738);
+
 
   @override
   Color get currentSpotDotColor => DarkThemeColors.currentSpotDotColor;

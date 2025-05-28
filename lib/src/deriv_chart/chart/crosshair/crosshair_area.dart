@@ -2,6 +2,7 @@ import 'package:deriv_chart/src/deriv_chart/chart/data_visualization/chart_serie
 import 'package:deriv_chart/src/deriv_chart/chart/gestures/gesture_manager.dart';
 import 'package:deriv_chart/src/deriv_chart/chart/x_axis/x_axis_model.dart';
 import 'package:deriv_chart/src/models/tick.dart';
+import 'package:deriv_chart/src/theme/chart_theme.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -205,7 +206,7 @@ class _CrosshairAreaState extends State<CrosshairArea> {
               duration: animationDuration,
               child: CustomPaint(
                 size: Size(1, constraints.maxHeight),
-                painter: const CrosshairDotPainter(),
+                painter:  CrosshairDotPainter(theme:context.watch<ChartTheme>()),
               ),
             ),
             AnimatedPositioned(
