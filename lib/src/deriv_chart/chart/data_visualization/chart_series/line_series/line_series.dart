@@ -35,7 +35,7 @@ class LineSeries extends DataSeries<Tick> {
   Widget getCrossHairInfo(Tick crossHairTick, int pipSize, ChartTheme theme) =>
       Text(
         '${crossHairTick.quote.toStringAsFixed(pipSize)}',
-        style: const TextStyle(fontSize: 16, color: Colors.white),
+        style: theme.overLineLarge,
       );
 
   @override
