@@ -126,6 +126,9 @@ class ChartDefaultDarkTheme extends ChartDefaultTheme {
 
   @override
   TextStyle get overLine => TextStyles.overLine;
+  
+  @override
+  TextStyle get overLineLarge => TextStyles.overLineLarge;
 
   @override
   Color get base01Color => LegacyDarkThemeColors.base01;

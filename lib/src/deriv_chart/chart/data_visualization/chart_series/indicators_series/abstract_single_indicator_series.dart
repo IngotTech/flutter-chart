@@ -169,9 +169,7 @@ abstract class AbstractSingleIndicatorSeries extends DataSeries<Tick> {
   Widget getCrossHairInfo(Tick crossHairTick, int pipSize, ChartTheme theme) =>
       Text(
         '${crossHairTick.quote.toStringAsFixed(pipSize)}',
-        style: theme.overLine.copyWith(
-          fontSize: 16,
-        ),
+        style: theme.overLineLarge
       );
 
   @override
