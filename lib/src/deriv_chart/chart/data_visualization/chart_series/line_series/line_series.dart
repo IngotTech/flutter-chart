@@ -24,7 +24,8 @@ class LineSeries extends DataSeries<Tick> {
           style: style,
           lastTickIndicatorStyle: lastTickIndicatorStyle,
         );
-  
+    /// The glow intensity of the line series.
+    double glowIntensity = 0.0;
 
   @override
   SeriesPainter<DataSeries<Tick>> createPainter() => LinePainter(
