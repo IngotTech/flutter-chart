@@ -108,6 +108,22 @@ static const TextStyle overLineLight = TextStyle(
     fontWeight: FontWeight.w400,
     fontFeatures: <FontFeature>[FontFeature.tabularFigures()],
   );
+    static const TextStyle overLineLarge = TextStyle(
+    fontFamily: appFontFamily,
+    fontSize: 16,
+    color: Colors.white,
+    height: 1.4,
+    fontWeight: FontWeight.w400,
+    fontFeatures: <FontFeature>[FontFeature.tabularFigures()],
+  );
+static const TextStyle overLineLargeLight = TextStyle(
+    fontFamily: appFontFamily,
+    fontSize: 16,
+    color: Colors.black,
+    height: 1.4,
+    fontWeight: FontWeight.w400,
+    fontFeatures: <FontFeature>[FontFeature.tabularFigures()],
+  );
   static const TextStyle gridTextStyle = TextStyle(
     fontFeatures: <FontFeature>[
       FontFeature.liningFigures(),

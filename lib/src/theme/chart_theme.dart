@@ -121,6 +121,8 @@ abstract class ChartTheme {
   TextStyle get title;
 
   TextStyle get overLine;
+  
+  TextStyle get overLineLarge;
 
   /// The painting styles of candlestick chart.
   CandleStyle get candleStyle;
