@@ -15,22 +15,22 @@ class CrosshairLinePainter extends CustomPainter {
       Paint()
         ..strokeWidth = 2
         ..style = PaintingStyle.fill
-        ..shader = ui.Gradient.linear(
-          Offset.zero,
-          Offset(0, size.height),
-          <Color>[
-            // TODO(Ramin): Use theme color when cross-hair design got updated
-            Colors.red.withOpacity(1),
-            Colors.red.withOpacity(1),
-            Colors.red.withOpacity(1),
-           // Color(0x88888880)
-          ],
-          const <double>[
-            0,
-            0.5,
-            1,
-          ],
-        ),
+        ..color = const Color(0x88888880),
+        // ..shader = ui.Gradient.linear(
+        //   Offset.zero,
+        //   Offset(0, size.height),
+        //   <Color>[
+        //     // TODO(Ramin): Use theme color when cross-hair design got updated
+        //    const Color(0x88888880),
+        //    const Color(0x88888880),
+        //    const  Color(0x88888880),
+        //   ],
+        //   const <double>[
+        //     0,
+        //     0.5,
+        //     1,
+        //   ],
+        // ),
     );
   }
 
