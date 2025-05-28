@@ -100,7 +100,14 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     fontFeatures: <FontFeature>[FontFeature.tabularFigures()],
   );
-
+static const TextStyle overLineLight = TextStyle(
+    fontFamily: appFontFamily,
+    fontSize: 10,
+    color: Colors.black,
+    height: 1.4,
+    fontWeight: FontWeight.w400,
+    fontFeatures: <FontFeature>[FontFeature.tabularFigures()],
+  );
   static const TextStyle gridTextStyle = TextStyle(
     fontFeatures: <FontFeature>[
       FontFeature.liningFigures(),

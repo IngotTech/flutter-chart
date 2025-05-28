@@ -27,9 +27,9 @@ class CrosshairDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.all(10),
-        decoration: const BoxDecoration(
-          color: Color(0xFF323738),
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+        decoration:  BoxDecoration(
+          color:  context.watch<ChartTheme>().crosshairInformationBoxBackgroundColor,
+          borderRadius:const BorderRadius.all(Radius.circular(8)),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

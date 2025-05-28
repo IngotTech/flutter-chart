@@ -82,6 +82,8 @@ class ChartDefaultLightTheme extends ChartDefaultTheme {
   @override
   Color get crosshairLineResponsiveUpperLineGradientStart =>
       LightThemeColors.crosshairLineResponsiveUpperLineGradientStart;
+  @override
+  Color get crosshairInformationBoxBackgroundColor => const Color(0xF7F7F7F7);
 
   @override
   Color get currentSpotDotColor => LightThemeColors.currentSpotDotColor;
@@ -121,7 +123,7 @@ class ChartDefaultLightTheme extends ChartDefaultTheme {
       blinkingDotColor: currentSpotDotColor);
 
   @override
-  TextStyle get overLine => TextStyles.overLine;
+  TextStyle get overLine => TextStyles.overLineLight;
 
   @override
   Color get base01Color => LegacyLightThemeColors.base01;
@@ -137,4 +139,6 @@ class ChartDefaultLightTheme extends ChartDefaultTheme {
 
   @override
   Color get base07Color => LegacyLightThemeColors.base07;
+  
+
 }
