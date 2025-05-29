@@ -13,6 +13,8 @@ class LineStyle extends DataSeriesStyle with EquatableMixin {
   /// Initializes a style that defines the style of painting line data.
   const LineStyle({
     this.color = const Color(0xFF85ACB0),
+        this.glowColor = const Color(0xFF85ACB0),
+
     this.thickness = 1,
     this.hasArea = false,
     this.markerRadius = 4,
@@ -31,7 +33,8 @@ class LineStyle extends DataSeriesStyle with EquatableMixin {
 
   /// Line color.
   final Color color;
-
+  /// Glow line color.
+  final Color glowColor;
   /// Line thickness.
   final double thickness;
 
@@ -47,6 +50,8 @@ class LineStyle extends DataSeriesStyle with EquatableMixin {
   /// Creates a copy of this object.
   LineStyle copyWith({
     Color? color,
+        Color? glowColor,
+
     double? thickness,
     bool? hasArea,
     double? markerRadius,
@@ -54,6 +59,7 @@ class LineStyle extends DataSeriesStyle with EquatableMixin {
   }) =>
       LineStyle(
         color: color ?? this.color,
+        glowColor: glowColor ?? this.glowColor,
         thickness: thickness ?? this.thickness,
         hasArea: hasArea ?? this.hasArea,
         markerRadius: markerRadius ?? this.markerRadius,
@@ -67,6 +73,7 @@ class LineStyle extends DataSeriesStyle with EquatableMixin {
   @override
   List<Object> get props => <Object>[
         color,
+        glowColor,
         thickness,
         hasArea,
         markerRadius,
