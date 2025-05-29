@@ -5,6 +5,7 @@ import 'package:deriv_chart/src/deriv_chart/chart/data_visualization/chart_serie
 import 'package:deriv_chart/src/deriv_chart/chart/data_visualization/models/animation_info.dart';
 import 'package:deriv_chart/src/models/tick.dart';
 import 'package:deriv_chart/src/theme/painting_styles/line_style.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../data_painter.dart';
@@ -12,13 +13,14 @@ import '../data_series.dart';
 
 /// A [DataPainter] for painting line data.
 class LinePainter extends DataPainter<DataSeries<Tick>> {
-  /// Initializes
-final double glowIntensity;
+  ///painter
+  LinePainter(
+    DataSeries<Tick> series,
+  )   : glowIntensity = (series as LineSeries).glowIntensity,
+        super(series);
 
-LinePainter(
-  DataSeries<Tick> series,
-)  : glowIntensity = (series as LineSeries).glowIntensity, 
-      super(series);
+  /// Initializes
+  final double glowIntensity;
 
   @override
   void onPaintData(
@@ -33,11 +35,35 @@ LinePainter(
     final Paint linePaint = Paint()
       ..color = style.color
       ..style = PaintingStyle.stroke
-      ..strokeWidth = style.thickness  
-      ..maskFilter = (series as LineSeries).glowIntensity > 0
-      ? MaskFilter.blur(BlurStyle.solid, (series as LineSeries).glowIntensity )
-      : null;
+      ..strokeWidth = style.thickness
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
+    // Glow layers: small blur, tight around the line
+    final List<_GlowLayer> layers = [
+      _GlowLayer(blur: 1, alpha: 180),
+      _GlowLayer(blur: 2, alpha: 120),
+      _GlowLayer(blur: 3, alpha: 120),
+      _GlowLayer(blur: 4, alpha: 130),
+      _GlowLayer(blur: 4, alpha: 140),
+    ];
+    Paint glowPaint = Paint();
+    for (final layer in layers) {
+      glowPaint = Paint()
+        ..color = style.glowColor.withAlpha(layer.alpha)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = linePaint.strokeWidth * 1.25
+        ..maskFilter = (series as LineSeries).glowIntensity > 0
+            ? MaskFilter.blur(
+                BlurStyle.solid,
+                clampDouble(
+                    layer.blur * (series as LineSeries).glowIntensity, 0, 100))
+            : null
+        ..strokeCap = StrokeCap.round
+        ..strokeJoin = StrokeJoin.round;
+      final DataLinePathInfo p = createPath(epochToX, quoteToY, animationInfo);
 
+      paintLines(canvas, p.path, glowPaint);
+    }
 
     final DataLinePathInfo path = createPath(epochToX, quoteToY, animationInfo);
 
@@ -197,4 +223,10 @@ class DataLinePathInfo {
 
   /// The right-most visible tick's position.
   final Offset endPosition;
+}
+
+class _GlowLayer {
+  _GlowLayer({required this.blur, required this.alpha});
+  final double blur;
+  final int alpha;
 }

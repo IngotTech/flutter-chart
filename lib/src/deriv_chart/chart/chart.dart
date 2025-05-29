@@ -185,9 +185,12 @@ class Chart extends StatefulWidget {
   /// Chart's indicators
   final Repository<IndicatorConfig>? indicatorsRepo;
 
+/// the glow effect at the start of the duration
   final double minGlow;
+/// the glow effect at the end of the duration
 
   final double maxGlow;
+/// the glow effect duration
 
   final Duration glowDuration;
 
