@@ -325,9 +325,11 @@ class BasicChartState<T extends BasicChart> extends State<T>
     }
     if (!maxQuote.isNaN && maxQuote != topBoundQuoteTarget) {
       topBoundQuoteTarget = maxQuote;
+      
       topBoundQuoteAnimationController.animateTo(
         topBoundQuoteTarget,
-        curve: Curves.easeOut,
+        curve: Curves.easeInOut, 
+        duration:const Duration(milliseconds: 300)
       );
     }
   }
